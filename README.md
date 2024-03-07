@@ -30,3 +30,5 @@ To set up the project locally, follow these steps:
 Remember to check the `.gitignore` file to understand which files and directories are excluded from version control. This can include configuration files with sensitive information, log files, temporary files, etc.
 
 For any specific setup related to development, testing, or production environments, refer to the respective configuration files under `config/environments/
+
+![](Sample.gif)
