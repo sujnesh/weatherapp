@@ -1,0 +1,65 @@
+<div class="page-content page-container" id="page-content">
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+            <%= form_tag(weather_forecasts_path, method: "get", class: "zip-code-search-form") do %>
+              <div class="form-group">
+                <%= label_tag(:location, "Enter Zip Code Or City:", class: "form-label") %>
+                <%= text_field_tag(:location, nil, placeholder: "e.g., 10281 or Delhi", class: "form-control") %>
+              </div>
+              <%= submit_tag("Search", class: "btn btn-primary") %>
+            <% end %>
+            <div class="col-lg-8 grid-margin stretch-card">
+              <!--weather card-->
+              <div class="card card-weather">
+                <div class="card-body">
+                  <div class="weather-date-location">
+                    <h3><%= Date.today.strftime("%A") %></h3>
+                    <p class="text-gray">
+                      <span class="weather-date"><%= Date.today.strftime("%B %Y") %></span>
+                      <span class="weather-location"><%= @weather_data["location"]["name"].split(",").second %>, <%= @location%></span>
+                      <% if @weather_data_cached %>
+                        <span class="cache-indicator">(Temperature Cached)</span>
+                      <% end %>
+                    </p>
+                  </div>
+                  <div class="weather-data d-flex">
+                    <div class="mr-auto">
+                      <h4 class="display-3"><%= @weather_data["data"]["values"]["temperature"].round %>
+                        <span class="symbol">&deg;</span>C</h4>
+                      <p class="text-gray">
+                        <span>Max: <%= @max_temperature.round %>&deg;C</span> |
+                        <span>Min: <%= @min_temperature.round %>&deg;C</span>
+                      </p>
+                      <p>
+                        <%= @weather_code_status %> <!-- You might want to map this code to a condition -->
+                        <% if @specific_weather_data_cached %>
+                          <span class="cache-indicator">(Forecast Cached)</span>
+                        <% end %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body p-0">
+                  <div class="d-flex weakly-weather">
+                    <% @daily_weather_data.each do |forecast| %>
+                    <div class="weakly-weather-item">
+                      <p class="mb-0">
+                        <%= forecast["time"].to_time.strftime("%a") %>
+                      </p>
+                      <i class="mdi mdi-weather-cloudy"></i> <!-- Adjust icon based on forecast["values"]["weatherCode"] -->
+                      <p class="mb-0">
+                        <%= forecast["values"]["temperatureAvg"].round %>&deg;
+                      </p>
+                      <small class="text-muted">
+                        <%= forecast["values"]["temperatureMax"].round %>&deg; | <%= forecast["values"]["temperatureMin"].round %>&deg;
+                      </small>
+                    </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <!--weather card ends-->
+            </div>
+        </div>
+    </div>
+</div>

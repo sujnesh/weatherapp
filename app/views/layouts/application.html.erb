@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weatherapp</title>
+    <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'weather_forecasts_index', media: 'all', 'data-turbolinks-track': 'reload' if controller_name == 'weather_forecasts' && action_name == 'index' %>
+  <%= stylesheet_link_tag 'weather_forecasts_show', media: 'all', 'data-turbolinks-track': 'reload' if controller_name == 'weather_forecasts' && action_name == 'show' %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/3.6.95/css/materialdesignicons.css">
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
