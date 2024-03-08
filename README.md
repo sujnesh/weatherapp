@@ -1,34 +1,38 @@
 To set up the project locally, follow these steps:
 
-1. **Clone the Repository**: Clone the project repository to your local machine. Use the Git command:
+1. **Ensure Rails Version**: The project uses Rails version `~> 5.2`. Ensure you have the correct Rails version installed. If not, you might need to install it using the command:
+   ```bash
+   gem install rails -v '~> 5.2'
+   ```
+
+2. **Clone the Repository**: Clone the project repository to your local machine using the Git command:
    ```bash
    git clone <repository-url>
    ```
 
-2. **Install Dependencies**: Navigate to the project directory and install the Ruby and Rails dependencies. You can do this by running the setup script included in the project:
+3. **Install Dependencies**: Navigate to the project directory and run:
    ```bash
    bundle install
    ```
-   This script will install the necessary Ruby gems, set up the database, and perform other initialization tasks as defined in the `bin/setup` file.
+   This installs all the Ruby and Rails dependencies specified in the `Gemfile`.
 
-3. **Database Configuration**: Configure your database connection settings in `config/database.yml`. You might need to update the username, password, and other connection details to match your local PostgreSQL setup.
-
-4. **Environment Variables**: Set up necessary environment variables. For example, if the application requires secret keys or database passwords, you should set them in your environment. Check `config/secrets.yml` and `config/database.yml` for placeholders that might need actual values.
-
-5. **Start the Rails Server**: Once the setup is complete, you can start the Rails server by running:
+4. **Start Redis**: The project requires Redis for caching. Ensure Redis is installed and running on your machine. Start Redis server with:
    ```bash
-   bin/rails server
+   redis-server
    ```
-   This will start the Puma web server on the default port (usually `3000`). You can access the application by navigating to `http://localhost:3000` in your web browser.
 
-6. **Run Tests**: To ensure everything is set up correctly, you can run the test suite with:
+5. **Start the Rails Server**: To start the Rails server, run:
    ```bash
-   bin/rails test
+   rails s
    ```
-   This will execute the test cases defined in the `test` directory.
+   This will start the server on the default port (`3000`). Access the application by navigating to `http://localhost:3000` in your web browser.
+
+6. **Weather API Key**: The application requires a weather API key to fetch weather data. Contact the project maintainer to obtain the API key and set it in your environment variables as `WEATHER_API_KEY`.
 
 Remember to check the `.gitignore` file to understand which files and directories are excluded from version control. This can include configuration files with sensitive information, log files, temporary files, etc.
 
-For any specific setup related to development, testing, or production environments, refer to the respective configuration files under `config/environments/
+For any specific setup related to development, testing, or production environments, refer to the respective configuration files under `config/environments/`.
+
+In case of any setup issues or if you need the weather API key, please contact the project maintainer.
 
 ![](Sample.gif)
